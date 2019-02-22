@@ -32,28 +32,28 @@ The goals / steps of this project are the following:
 
 #### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 My project includes the following files:
-* *model.py* containing the script to create and train the model
-* *drive.py* for driving the car in autonomous mode
-* *model16.h5* containing a trained convolution neural network
-* *writeup_behavioral_cloning.md* summarizing the results
+* **model.py** containing the script to create and train the model
+* **drive.py** for driving the car in autonomous mode
+* **model16.h5** containing a trained convolution neural network
+* **writeup_behavioral_cloning.md** summarizing the results
 
 #### 2. Submission includes functional code
-Using the Udacity provided simulator, Udacity provided drive.py file, and my *model16.h5*, the car can be driven autonomously around the track by executing
+Using the Udacity provided simulator, Udacity provided drive.py file, and my **model16.h5**, the car can be driven autonomously around the track by executing
 ```sh
 python drive.py model.h5
 ```
 
 #### 3. Submission code is usable and readable
 
-The *model.py* file contains the code for training and saving the convolution neural network.
+The **model.py** file contains the code for training and saving the convolution neural network.
 The file structure is setup as a class that can be executed from the command line - albeit the pipeline is hard-coded. This allowed me to build each step independently, keep track of the test models, and morph the pipeline from a simple test to the final project.
 
-The file pipeline is setup as follows - starting *model.py (ln212)*
+The file pipeline is setup as follows - starting **model.py (ln212)**
 1. instantiate the Driver Class
-2. collect all the training data and add to the model *ln216-ln264* using *Driver.pre_open_csv()* found on *ln41*. This method collects lines from the csv file.
-3. at *ln267* invoke the *Driver.pre_collect_data_gen_help()* method found on *ln107*. This splits the data set into training and validation sets and sets up the generator
-4. on *ln269* trigger the model *Driver.nvidia_like()* found on *ln184* which will setup the model
-5. on *ln272* compile and run the model via the method *Driver.compile_generator_model()*. This method will also save the model to file.
+2. collect all the training data and add to the model **ln216-ln264** using **Driver.pre_open_csv()** found on **ln41**. This method collects lines from the csv file.
+3. at **ln267** invoke the **Driver.pre_collect_data_gen_help()** method found on **ln107**. This splits the data set into training and validation sets and sets up the generator
+4. on **ln269** trigger the model **Driver.nvidia_like()** found on **ln184** which will setup the model
+5. on **ln272** compile and run the model via the method **Driver.compile_generator_model()**. This method will also save the model to file.
 
 
 
@@ -61,20 +61,20 @@ The file pipeline is setup as follows - starting *model.py (ln212)*
 
 #### 1. An appropriate model architecture has been employed
 
-My model normalizes the data and crops it *ln193-194*. It then employs a number of convolution neural network with 2x2, 5x5, 5x5, 3x3, 3x3 filter sizes and depths between 24 to 64, Each Conv2D includes RELU layers. *ln198-203*.  The network is then flattened and adds a set of fully connected layers from 100 to 1 *ln204-209*
+My model normalizes the data and crops it **ln193-194**. It then employs a number of convolution neural network with 2x2, 5x5, 5x5, 3x3, 3x3 filter sizes and depths between 24 to 64, Each Conv2D includes RELU layers. **ln198-203**.  The network is then flattened and adds a set of fully connected layers from 100 to 1 **ln204-209**
 
 #### 2. Attempts to reduce overfitting in the model
 
-Two dropout layers were added in order to reduce overfitting *ln195* & *ln205*. I found the 2 dropout layers at .4 (which in keras means an image has 60% chance of being kept) seemed to work well. (although this  was not exhaustively tested).
+Two dropout layers were added in order to reduce overfitting **ln195** & **ln205**. I found the 2 dropout layers at .4 (which in keras means an image has 60% chance of being kept) seemed to work well. (although this  was not exhaustively tested).
 
 The model was trained and validated on a wide variety of captured sequences. After each test that resulted in failure, I refined the data set by adding training data specific to the problem points.
 
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer *ln121* (all other test models also used the adam optimizer)
+The model used an adam optimizer **ln121** (all other test models also used the adam optimizer)
 
-I stayed with around 12 epochs. The final model had a loss of *0.0152* and a val_loss of *0.173*
+I stayed with around 12 epochs. The final model had a loss of **0.0152** and a val_loss of **0.173**
 
 #### 4. Appropriate training data
 
@@ -84,18 +84,18 @@ The model was trained using data of my driving the simulated vehicle on the road
 
 #### 1. Solution Design Approach
 
-I followed an approach similar to the one laid out in the lesson. I wanted to start simply and prove the end-to-end pieces of the pipeline. To that end, I started with a simple class and method that read the csv files and processed them. I added the basic model *ln130* and caused it to generate a file. I then tried it out on the simulator - I think the car ended up in the water.
+I followed an approach similar to the one laid out in the lesson. I wanted to start simply and prove the end-to-end pieces of the pipeline. To that end, I started with a simple class and method that read the csv files and processed them. I added the basic model **ln130** and caused it to generate a file. I then tried it out on the simulator - I think the car ended up in the water.
 
-The next step was to try a LeNet - like approach *ln141*. The result was a little better - it got through the first curve! but did not make it over the bridge.
+The next step was to try a LeNet - like approach **ln141**. The result was a little better - it got through the first curve! but did not make it over the bridge.
 
-I tried the nvida like model *ln184*. It worked fairly well but ran off the road at the dirt curve after the bridge. I added more data and then eventually added the dropouts. Along with this network change, I added the generator *ln107 & ln77*.
+I tried the nvida like model **ln184**. It worked fairly well but ran off the road at the dirt curve after the bridge. I added more data and then eventually added the dropouts. Along with this network change, I added the generator **ln107 & ln77**.
 
-One interesting note is that my pre-generator design included inverting (flipping?) the images to double to data and to avoid training with a curve bias (see *ln67 & ln68*). When writing this document, I found that the _generator *ln77* does not seem to flip the images. This was would have been an easy add to the generator by inserting the equivalent of the '2 lines of flip code' after *ln97*.
+One interesting note is that my pre-generator design included inverting (flipping?) the images to double to data and to avoid training with a curve bias (see **ln67 & ln68**). When writing this document, I found that the _generator **ln77** does not seem to flip the images. This was would have been an easy add to the generator by inserting the equivalent of the '2 lines of flip code' after **ln97**.
 
 
 #### 2. Final Model Architecture
 
-The final model architecture *ln184* consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture **ln184** consisted of a convolution neural network with the following layers and layer sizes ...
 
 | Type                  |     Contents                                |
 |:---------------------:|:-------------------------------------------:|
