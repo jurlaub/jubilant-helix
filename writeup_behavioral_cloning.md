@@ -18,11 +18,11 @@ The goals / steps of this project are the following:
 [image2]: ./examples/bridge1.jpg "Bridge Training"
 [image3]: ./examples/bridge2.jpg "Bridge Approach"
 [image4]: ./examples/dirt1.jpg "Dirt Recovery"
-[image5]: ./examples/dirt2.jpy "Dirt Avoidance"
-[image6]: ./examples/recover1.jpg "Normal Image"
+[image5]: ./examples/dirt2.jpg "Dirt Avoidance"
+[image6]: ./examples/recovery1.jpg "Normal Image"
 [image7]: ./examples/recover2.jpg "Hard Right Recovery"
-[image8]: ./examples/recover3.jpg "Hard Right Recovery from Right"
-[image9]: ./examples/recover4.jpg "Hard Right Recovery from Left"
+[image8]: ./examples/recovery3.jpg "Hard Right Recovery from Right"
+[image9]: ./examples/recovery4.jpg "Hard Right Recovery from Left"
 
 
 ## Rubric Points
