@@ -123,19 +123,22 @@ To capture driving behavior (it took a few tries for it to be good). I recorded 
 ![alt text][image1]
 
 When the first training set failed by either heading off the curve or crashing into the bridge, I worked on gathering more data - concentrating on the bridge.
-![alt text][image3]
-![alt text][image2]
+
+![alt text][image3]  ![alt text][image2]
+
 
 The next problem was with the dirt track after the bridge. The car just kept going. I added data related to the vehicle doing a variety of hard turns away from the dirt.
-![alt text][image5]
-![alt text][image4]
+
+![alt text][image5]  ![alt text][image4]
+
 
 Then I added recovery data with the vehcle starting close to the edge and moving back to the center. Other data collection included driving the course backwards.
 
-![alt text][image6]
-![alt text][image7]
-![alt text][image9]
-![alt text][image8]
+
+![alt text][image6]  ![alt text][image7]
+
+![alt text][image9]  ![alt text][image8]
+
 
 
 In the end, the final training set consisted of **22422** training images and **5606** validation images. This was the verbose output of the training model.
